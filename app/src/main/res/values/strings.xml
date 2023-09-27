@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Art Space</string>
+    <string name="friends">FRIENDS</string>
+    <string name="Age">1994-2004</string>
+    <string name="rachel">Rachel Green</string>
+    <string name="rachel_year">1971</string>
+    <string name="monica">Monica Geller</string>
+    <string name="monica_year">1969</string>
+    <string name="phoebe">Phoebe Bufay</string>
+    <string name="phoebe_year">1967</string>
+    <string name="ross">Ross Geller</string>
+    <string name="ross_year">1967</string>
+    <string name="chandler">Chandler Big</string>
+    <string name="chandler_year">1968</string>
+    <string name="joey">Joey Tribianni</string>
+    <string name="joey_year">1968</string>
+    <string name="respiro">Rachel y Ross discuten</string>
+    <string name="respiro_descripcion">Cabe aclarar que no estaban en un respiro</string>
+    <string name="siete">Sieteee</string>
+    <string name="siete_descripcion">Monica le explica las partes sensibles de una mujer a chandler</string>
+    <string name="accionGracias">Accion de gracias</string>
+    <string name="accionGracias_descripcion">Monica le pide disculpas a chandler</string>
+    <string name="pierdenCasa">Apuesta perdida</string>
+    <string name="pierdenCasa_descripcion">Las chicas pierden el apartamento</string>
+    <string name="anterior">Anterior</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="Student">Laura Daniela Jaimes - 2040430</string>
+</resources>
