@@ -65,6 +65,52 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ArtSpaceScreen(modifier: Modifier = Modifier) {
 
+    var title by remember { mutableStateOf(1) }
+    var year by remember { mutableStateOf(1) }
+    var currentArtwork by remember { mutableStateOf(1) }
+
+    val images = when (currentArtwork){
+        1 -> R.drawable.grupo
+        2 -> R.drawable.rachel
+        3 -> R.drawable.monica
+        4 -> R.drawable.phoebe
+        5 -> R.drawable.ross
+        6 -> R.drawable.chandler
+        7 -> R.drawable.joey
+        8 -> R.drawable.respiro
+        9 -> R.drawable.siete
+        10 -> R.drawable.acciongracias
+        else -> R.drawable.pierden_casa
+    }
+
+    val titles = when (title){
+        1 -> R.string.friends
+        2 -> R.string.rachel
+        3 -> R.string.monica
+        4 -> R.string.phoebe
+        5 -> R.string.ross
+        6 -> R.string.chandler
+        7 -> R.string.joey
+        8 -> R.string.respiro
+        9 -> R.string.siete
+        10 -> R.string.accionGracias
+        else -> R.string.pierdenCasa
+    }
+
+    val years = when (year){
+        1 -> R.string.Age
+        2 -> R.string.rachel_year
+        3 -> R.string.monica_year
+        4 -> R.string.phoebe_year
+        5 -> R.string.ross_year
+        6 -> R.string.chandler_year
+        7 -> R.string.joey_year
+        8 -> R.string.respiro_descripcion
+        9 -> R.string.siete_descripcion
+        10 -> R.string.accionGracias_descripcion
+        else -> R.string.pierdenCasa_descripcion
+    }
+
     val firstArtwork = R.drawable.grupo
     val secondArtwork = R.drawable.rachel
     val thirdArtwork = R.drawable.monica
@@ -77,18 +123,15 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
     val tenArthWork = R.drawable.acciongracias
     val elevenArthWork = R.drawable.pierden_casa
 
-    var title by remember { mutableStateOf(R.string.friends) }
-    var year by remember { mutableStateOf(R.string.Age) }
-    var currentArtwork by remember { mutableStateOf(firstArtwork) }
-    var imageResource by remember { mutableStateOf(currentArtwork) }
-
-
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ){
         Box(
-            modifier = Modifier.fillMaxWidth().background(color = Color.Gray).padding(16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = colorResource(id = R.color.purple_500))
+                .padding(16.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.Student),
@@ -98,87 +141,41 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.align(Alignment.Center)
             )
         }
+        Spacer(
+            modifier = modifier.size(16.dp)
+        )
         ArtworkImage(
-            currentArtwork = currentArtwork,
+            currentArtwork = images,
             modifier = Modifier.aspectRatio(0.9f)
         )
         Spacer(
             modifier = modifier.size(16.dp)
         )
         ArtworkTitle(
-            title = title,
-            year = year,
+            title = titles,
+            year = years,
         )
         Spacer(
             modifier = modifier.size(25.dp)
         )
-
         Row(
             modifier = modifier
                 .padding(horizontal = 8.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         )
-
         {
             Button(
                 onClick = {
-                    when (currentArtwork) {
-                        firstArtwork -> {
-                            currentArtwork = elevenArthWork
-                            title = R.string.pierdenCasa
-                            year = R.string.pierdenCasa_descripcion
-                        }
-                        secondArtwork -> {
-                            currentArtwork = firstArtwork
-                            title = R.string.friends
-                            year = R.string.Age
-                        }
-                        thirdArtwork -> {
-                            currentArtwork = secondArtwork
-                            title = R.string.rachel
-                            year = R.string.rachel_year
-                        }
-                        fourthArtwork -> {
-                            currentArtwork = thirdArtwork
-                            title = R.string.monica
-                            year = R.string.monica_year
-                        }
-                        fiveArthWork -> {
-                            currentArtwork = fourthArtwork
-                            title = R.string.phoebe
-                            year = R.string.phoebe_year
-                        }
-                        sixArthWork -> {
-                            currentArtwork = fiveArthWork
-                            title = R.string.ross
-                            year = R.string.ross_year
-                        }
-                        sevenArthWork -> {
-                            currentArtwork = sixArthWork
-                            title = R.string.chandler
-                            year = R.string.chandler_year
-                        }
-                        eightArthWork -> {
-                            currentArtwork = sevenArthWork
-                            title = R.string.joey
-                            year = R.string.joey_year
-                        }
-                        nineArthWork -> {
-                            currentArtwork = eightArthWork
-                            title = R.string.respiro
-                            year = R.string.respiro_descripcion
-                        }
-                        tenArthWork -> {
-                            currentArtwork = nineArthWork
-                            title = R.string.siete
-                            year = R.string.siete_descripcion
-                        }
-                        else -> {
-                            currentArtwork = tenArthWork
-                            title = R.string.accionGracias
-                            year = R.string.accionGracias_descripcion
-                        }
+                    if(currentArtwork == 1){
+                        currentArtwork = 11
+                        title = 11
+                        year = 11
+                    }
+                    else if(currentArtwork > 1 || currentArtwork < 12){
+                           currentArtwork -= 1
+                           title -= 1
+                           year -= 1
                     }
                 },
                 colors = ButtonDefaults.buttonColors(
@@ -188,8 +185,7 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                     defaultElevation = 1.dp,
                     pressedElevation = 0.dp,
                     focusedElevation = 0.dp,
-                ),
-                modifier = Modifier.shadow(4.dp, shape= RoundedCornerShape(4.dp))
+                )
             ) {
                 Text(
                     text = stringResource(id = R.string.anterior),
@@ -199,9 +195,9 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                 )
             }
             Button(onClick = {
-                currentArtwork = firstArtwork
-                title = R.string.friends
-                year = R.string.Age
+                currentArtwork = 1
+                title = 1
+                year = 1
             },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.purple_700)
@@ -221,62 +217,20 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
             }
             Button(
                 onClick = {
-                    when (currentArtwork) {
-                        firstArtwork -> {
-                            currentArtwork = secondArtwork
-                            title = R.string.rachel
-                            year = R.string.rachel_year
-                        }
-                        secondArtwork -> {
-                            currentArtwork = thirdArtwork
-                            title = R.string.monica
-                            year = R.string.monica_year
-                        }
-                        thirdArtwork -> {
-                            currentArtwork = fourthArtwork
-                            title = R.string.phoebe
-                            year = R.string.phoebe_year
-                        }
-                        fourthArtwork -> {
-                            currentArtwork = fiveArthWork
-                            title = R.string.ross
-                            year = R.string.ross_year
-                        }
-                        fiveArthWork -> {
-                            currentArtwork = sixArthWork
-                            title = R.string.chandler
-                            year = R.string.chandler_year
-                        }
-                        sixArthWork -> {
-                            currentArtwork = sevenArthWork
-                            title = R.string.joey
-                            year = R.string.joey_year
-                        }
-                        sevenArthWork -> {
-                            currentArtwork = eightArthWork
-                            title = R.string.respiro
-                            year = R.string.respiro_descripcion
-                        }
-                        eightArthWork -> {
-                            currentArtwork = nineArthWork
-                            title = R.string.siete
-                            year = R.string.siete_descripcion
-                        }
-                        nineArthWork -> {
-                            currentArtwork = tenArthWork
-                            title = R.string.accionGracias
-                            year = R.string.accionGracias_descripcion
-                        }
-                        tenArthWork -> {
-                            currentArtwork = elevenArthWork
-                            title = R.string.pierdenCasa
-                            year = R.string.pierdenCasa_descripcion
-                        }
-                        else -> {
-                            currentArtwork = firstArtwork
-                            title = R.string.friends
-                            year = R.string.Age
-                        }
+
+                    currentArtwork += 1
+                    title += 1
+                    year += 1
+
+                    if(currentArtwork == 11){
+                        currentArtwork = 11
+                        title = 11
+                        year = 11
+                    }
+                    else if(currentArtwork > 12){
+                        currentArtwork = 1
+                        title = 1
+                        year = 1
                     }
                 },
                 colors = ButtonDefaults.buttonColors(
@@ -301,15 +255,6 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
     }
 }
 
-fun resetGallery(
-    @DrawableRes currentArtwork: Int,
-    @StringRes title: Int,
-    @StringRes year: Int
-){
-
-}
-
-
 @Composable
 fun ArtworkImage(
     modifier: Modifier = Modifier,
@@ -323,30 +268,6 @@ fun ArtworkImage(
             .clip(RoundedCornerShape(16.dp)),
         contentScale = ContentScale.FillWidth
     )
-}
-
-
-@Composable
-fun ArtworkTitle2(
-    @StringRes title: Int,
-    @StringRes description: Int,
-) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(id = title),
-            fontWeight = FontWeight.Bold,
-            color = colorResource(id = R.color.blue_100),
-            fontSize = 32.sp,
-        )
-        Text(
-            text = stringResource(id = description),
-            fontWeight = FontWeight.Medium,
-            color = colorResource(id = R.color.gray_300),
-            fontSize = 16.sp,
-        )
-    }
 }
 
 @Composable
