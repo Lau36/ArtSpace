@@ -39,6 +39,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -111,18 +112,6 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
         else -> R.string.pierdenCasa_descripcion
     }
 
-    val firstArtwork = R.drawable.grupo
-    val secondArtwork = R.drawable.rachel
-    val thirdArtwork = R.drawable.monica
-    val fourthArtwork = R.drawable.phoebe
-    val fiveArthWork = R.drawable.ross
-    val sixArthWork = R.drawable.chandler
-    val sevenArthWork = R.drawable.joey
-    val eightArthWork = R.drawable.respiro
-    val nineArthWork = R.drawable.siete
-    val tenArthWork = R.drawable.acciongracias
-    val elevenArthWork = R.drawable.pierden_casa
-
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -143,6 +132,16 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
         }
         Spacer(
             modifier = modifier.size(16.dp)
+        )
+        Text(
+            text = stringResource(R.string.titlle),
+            fontWeight = FontWeight.Bold,
+            color = colorResource(id = R.color.blue_100),
+            fontSize = 32.sp,
+            textAlign = TextAlign.Center
+        )
+        Spacer(
+            modifier = modifier.size(9.dp)
         )
         ArtworkImage(
             currentArtwork = images,
@@ -276,6 +275,7 @@ fun ArtworkTitle(
     @StringRes year: Int,
 ) {
     Column(
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -289,6 +289,7 @@ fun ArtworkTitle(
             fontWeight = FontWeight.Medium,
             color = colorResource(id = R.color.gray_300),
             fontSize = 16.sp,
+            textAlign = TextAlign.Center
         )
     }
 }
